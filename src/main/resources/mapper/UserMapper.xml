@@ -4,10 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.netease.dao.mapper.UserMapper">
 
-<insert id="save" parameterType="com.netease.entity.user">
-        insert user(userName,password) values(#{userName},#{password})
-</insert>
-        <select id="getUsers" resultType="com.netease.entity.user">
-                select * from user
-        </select>
+    <insert id="save" parameterType="com.netease.entity.User">
+        insert User(userName,password,type) values(#{userName},#{password},#{type})
+    </insert>
+    <select id="getUsers" resultType="com.netease.entity.User">
+                select * from User
+     </select>
+    <select id="getUsersByName" resultType="com.netease.entity.User">
+                select * from User WHERE userName=#{username}
+     </select>
 </mapper>

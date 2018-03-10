@@ -1,6 +1,6 @@
 package test;
-import com.netease.entity.user;
-import com.netease.serviceImpl.userServiceImpl;
+import com.netease.entity.User;
+import com.netease.serviceImpl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:spring/applicationContext.xml"})
 public class userTest {
     @Autowired
-    public userServiceImpl userService;
+    public UserServiceImpl userService;
     @Test
     public void saveTest(){
-        user user1=new user();
+        User user1=new User();
         user1.setUserName("yuan2");
         user1.setPassword("1234");
         userService.save(user1);

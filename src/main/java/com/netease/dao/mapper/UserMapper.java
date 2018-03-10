@@ -1,6 +1,6 @@
 package com.netease.dao.mapper;
 
-import com.netease.entity.user;
+import com.netease.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface UserMapper {
-    public void save(user user);
-    public List<user> getUsers(Integer id);
+    public void save(User User);//没有使用
+    public List<User> getUsers(Integer id);
+    public List<User> getUsersByName(String username);
 }
