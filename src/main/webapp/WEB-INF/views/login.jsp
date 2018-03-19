@@ -6,44 +6,51 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="../js/md5.js" ></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/login.css">
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/md5.js"></script>
+<script type="text/javascript" src="../js/login.js"></script>
 <head>
     <title>Title</title>
     <script>
-        function loginFunc(){
-            var userName = $("#userName").val();
-            var beforePassword = $("#beforePassword").val();
-            if(!isNull(userName)&&!isNull(beforePassword)){
-                beforePassword=$.md5(beforePassword);
-                $("#password").val(beforePassword);
-               return true;
-            }else{
-                alert("请重新输入");
-                return false;
-            }
-        }
-        function isNull( str ){
-            if ( str == "" ) return true;
-            var regu = "^[ ]+$";
-            var re = new RegExp(regu);
-            return re.test(str);
-        }
+        ctx="${pageContext.request.contextPath}";
     </script>
+
 </head>
-<body>
-<div align=""></div>
-<form method="post" action="${pageContext.request.contextPath}/user/Login" id="loginForm" onsubmit="return loginFunc(this);">
-    用户名:<input type="text" name="userName" id="userName" placeholder="用户名"/><br/>
-    用户密码:<input type="password" name="beforePassword" id="beforePassword" placeholder="密码"/><br/>
-    <input type="hidden" name="password" id="password"/><br/>
-    <c:if test="${msg!=null }">
-        ${msg }<br />
-    </c:if>
-    <input type="submit" id="submit" value="用户登录"/>
-</form>
+<body style="background: url('${pageContext.request.contextPath}/images/login_bg.jpg')  no-repeat center;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+
+            <form method="post" class="form-horizontal" role="form"
+                  action="${pageContext.request.contextPath}/user/loginJump" id="loginForm"
+                  onsubmit="return loginFunc(this);">
+                <p class="message">用户登录</p>
+               <br><br>
+                <div class="form-group">
+                    <label for="userName" class=" control-label">用户名</label>
+                    <input type="text" name="userName" id="userName" placeholder="请输入用户名"/>
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <label for="beforePassword" class="control-label">密码</label>
+                        <input type="password" name="beforePassword" id="beforePassword" placeholder="请输入密码"/>
+                    <i class="fa fa-lock"></i>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <button type="submit" class="btn btn-default">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 
 

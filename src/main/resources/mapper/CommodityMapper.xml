@@ -12,10 +12,19 @@
     <select id="selectAll" resultType="com.netease.entity.Commodity">
         SELECT * FROM commodity
     </select>
+
+    <select id="findNoSellCommodity" resultType="com.netease.entity.Commodity">
+        SELECT * FROM commodity where amount=0
+    </select>
+
+    <select id="findLastRecord" resultType="com.netease.entity.Commodity">
+        select   *   from   commodity   order   by   id   desc   limit   1
+    </select>
     <!-- 插入-->
     <insert id="insertCommodity" parameterType="com.netease.entity.Commodity">
         insert into commodity
-        (title,summary,imgUrl,text,price,publish_time,userID)values(#{title},#{summary},#{imgUrl},#{text},#{price},#{publishTime,jdbcType=TIMESTAMP},#{userID});
+        (title,summary,imgUrl,image_source,text,price,amount,publish_time,userID)values(#{title},#{summary},#{imgUrl},#{image_source},#{text},#{price},#{amount},#{publishTime,jdbcType=TIMESTAMP},#{userID});
+
     </insert>
     <!-- 删除-->
     <delete id="deleteCommodityById" parameterType="int">
@@ -25,7 +34,11 @@
     <!-- 更新-->
     <update id="updateCommodity" parameterType="com.netease.entity.Commodity">
         update  commodity set
-        title=#{title},summary=#{summary},imgUrl=#{imgUrl} where
+        title=#{title},summary=#{summary},imgUrl=#{imgUrl},image_source=#{image_source},text=#{text},price=#{price}where
         id=#{id}
+    </update>
+
+    <update id="updateAmount" >
+        update  commodity set amount=amount+#{amount} where id=#{id}
     </update>
 </mapper>

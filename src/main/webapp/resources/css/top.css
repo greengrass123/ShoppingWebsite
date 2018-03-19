@@ -1,0 +1,26 @@
+.top{
+    padding: 10px 15px;
+    margin: 0 0 30px;
+    background: #d22147;
+    line-height: 30px;
+    display: block;
+    height: 30px;
+}
+a,button{cursor:pointer;}
+a{ text-decoration:none}
+a:hover{color:#000;}
+.top_head{
+    width: 970px;
+    margin: 0 auto;
+}
+.top_login{
+    color: #fff;
+    float: left;
+}
+a{
+    color: #fff;
+}
+.top_index{
+    float: right;
+    color: #fff;
+}

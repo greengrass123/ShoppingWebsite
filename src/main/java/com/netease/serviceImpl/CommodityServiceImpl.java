@@ -25,8 +25,8 @@ public class CommodityServiceImpl implements CommodityService{
 
     private static final Logger log = LoggerFactory.getLogger(CommodityServiceImpl.class);
 
-    public void insertCommodity(Commodity commodity) {
-        commodityMapper.insertCommodity(commodity);
+    public Integer insertCommodity(Commodity commodity) {
+        return  commodityMapper.insertCommodity(commodity);
     }
 
     public Integer deleteCommodityById(int commodityID) {
@@ -60,5 +60,20 @@ public class CommodityServiceImpl implements CommodityService{
 
     public List<Commodity> selectAll() {
         return commodityMapper.selectAll();
+    }
+
+    public void updateAmount(Integer id, Integer amount) {
+        commodityMapper.updateAmount(id,amount);
+    }
+
+    public List<Commodity> findNoSellCommodity() {
+        return  commodityMapper.findNoSellCommodity();
+    }
+    /**
+     * 查找最后一条数据
+     * @return
+     */
+    public Commodity findLastRecord(){
+       return commodityMapper.findLastRecord();
     }
 }

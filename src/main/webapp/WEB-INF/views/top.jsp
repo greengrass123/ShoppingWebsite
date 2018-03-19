@@ -8,31 +8,52 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<link rel="stylesheet" href="../css/top.css">
 <head>
     <title>Title</title>
 </head>
 <body>
-<div class="user">
+
+<div class="top">
+    <div class="top_head">
+
+    <c:if test="${sessionScope.user==null}">
+        <div class="top_login">
+            请<a href="${pageContext.request.contextPath}/user/login">[登录]</a>
+        </div>
+
+        <div class="top_index">
+            <a href="${pageContext.request.contextPath}/">[首页]</a>
+        </div>
+    </c:if>
     <c:if test="${sessionScope.user!=null}">
         <c:choose>
             <c:when test="${sessionScope.user.type==1}">
-                买家你好 <span class="name">${sessionScope.user.userName}</span>
-                <a href="${pageContext.request.contextPath}/user/loginOut">[财务]</a>
-                <a href="${pageContext.request.contextPath}/user/loginOut">[购物车]</a>
+                <div class="top_login">
+                    买家你好,<span class="name">${sessionScope.user.userName}</span>
+                    <a href="${pageContext.request.contextPath}/user/loginOut">[退出]</a>
+                </div>
+                <div class="top_index">
+                    <a href="${pageContext.request.contextPath}/">[首页]</a>
+                    <a href="${pageContext.request.contextPath}/purchase/account">[财务]</a>
+                    <a href="${pageContext.request.contextPath}/purchase/shoppingCart">[购物车]</a>
+                </div>
             </c:when>
             <c:when test="${sessionScope.user.type==2}">
-                卖家你好 <span class="name">${sessionScope.user.userName}</span>
-                <a href="${pageContext.request.contextPath}/seller/publish">[发布]</a>
+                <div class="top_login">
+                    卖家你好 <span class="name">${sessionScope.user.userName}</span>
+                    <a href="${pageContext.request.contextPath}/user/loginOut">[退出]</a>
+                </div>
+                <div class="top_index">
+                    <a href="${pageContext.request.contextPath}/">[首页]</a>
+                    <a href="${pageContext.request.contextPath}/commodity/publish">[发布]</a>
+                </div>
             </c:when>
-
         </c:choose>
     </c:if>
-    <a href="${pageContext.request.contextPath}/user/loginOut">[首页]</a>
-   <span class="name">${sessionScope.user.userName}</span>！<a href="${pageContext.request.contextPath}/user/loginOut">[退出]</a>
-<c:if test="${sessionScope.user==null}">
-    请<a href="${pageContext.request.contextPath}/user/loginJump">[登录]</a>
-</c:if>
-
+    </div>
 </div>
+
+
 </body>
 </html>

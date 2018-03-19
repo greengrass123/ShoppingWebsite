@@ -24,4 +24,11 @@ public class userTest {
         userService.save(user1);
     }
 
+    @Test
+    public void test(){
+        String str="user/index";
+        int st=str.indexOf("index");
+        System.out.println(1);
+    }
+
 }
