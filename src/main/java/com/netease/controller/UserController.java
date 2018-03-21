@@ -80,8 +80,6 @@ public class UserController  {
     @RequestMapping("/loginOut")
     public String loginOut(SessionStatus sessionStatus,HttpServletResponse response){
         sessionStatus.setComplete();//清除session
-
-
         return "redirect:/" ;
     }
 }

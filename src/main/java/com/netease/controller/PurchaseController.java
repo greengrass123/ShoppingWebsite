@@ -72,7 +72,7 @@ public class PurchaseController {
         for(int i=0;i<shoppingCartList.size();i++){
             int commodityID=shoppingCartList.get(i).getCommodityID();
             if(commodityHashMap.get(commodityID)==null){
-                Commodity commodity=commodityService.findById(commodityID);
+                Commodity commodity=commodityService.findById(commodityID);//通过购物车中的记录中商品ID，通过商品表查找具体是那个商品，并在map中一一对应
                 commodityHashMap.put(commodityID,commodity);
             }
         }
@@ -114,7 +114,7 @@ public class PurchaseController {
         for(int i=0;i<purchaseList.size();i++){
             int commodityID=purchaseList.get(i).getCommodityID();
             if(commodityHashMap.get(commodityID)==null){
-                Commodity commodity=commodityService.findById(commodityID);
+                Commodity commodity=commodityService.findById(commodityID);//通过购买记录中商品ID，通过商品表查找具体是那个商品，并在map中一一对应
                 commodityHashMap.put(commodityID,commodity);
             }
             total+=purchaseList.get(i).getAmount()*purchaseList.get(i).getPrice();

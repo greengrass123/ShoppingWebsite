@@ -114,7 +114,7 @@ public class CommodityController {
 
     @RequestMapping("/edit")
     public ModelAndView upadteCommodityBefore(@RequestParam("id") Integer id) {
-        Commodity commodity=commodityService.findById(id);
+        Commodity commodity=commodityService.findById(id);//通过ID查找商品
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("commodity",commodity);
         modelAndView.setViewName("edit");
@@ -146,7 +146,7 @@ public class CommodityController {
 
     @RequestMapping("/findCommodityById")
     public ModelAndView findCommodityById(@RequestParam("id") int id) {
-        Commodity commodity = commodityService.findById(id);
+        Commodity commodity = commodityService.findById(id);//通过ID查找商品
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("commodity", commodity);
         modelAndView.setViewName("edit");
@@ -155,7 +155,7 @@ public class CommodityController {
 
     @RequestMapping("/findAllCommodity")
     public ModelAndView findAllCommodity() {
-        List<Commodity> commodityList = commodityService.selectAll();
+        List<Commodity> commodityList = commodityService.selectAll();//查找所有的商品
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("commodityList", commodityList);
         modelAndView.setViewName("index");
@@ -206,14 +206,14 @@ public class CommodityController {
 
                 // 自定义的文件名称
                 String fileName = String.valueOf(System.currentTimeMillis());
-                String path2 = "images\\" + fileName + "." + type;
-                String realFilePath = path1 + path2;
+                String mysqlPath = "images\\" + fileName + "." + type;
+                String realFilePath = path1 + mysqlPath;
                 File file = new File(realFilePath);
                 if (!file.exists()) {
                     file.mkdirs();
                 }
                 imgUrl.transferTo(file);
-                return path2;
+                return mysqlPath;
             } else {
                 return ER7001;
             }

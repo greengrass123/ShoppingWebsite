@@ -31,6 +31,9 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
     @Transactional
     public void settlement(List<ShoppingCart> shoppingCarts){
+        /**
+         * 结算时需要添加事务，更新商品表中的购买数量和删除购物车中数据，最后更新购买记录表
+         */
         for(int i=0;i<shoppingCarts.size();i++){
             ShoppingCart shoppingCart=shoppingCarts.get(i);
             Purchase purchase=new Purchase(shoppingCart.getPrice(),shoppingCart.getAmount(),shoppingCart.getCommodityID(),shoppingCart.getBuy_time());
