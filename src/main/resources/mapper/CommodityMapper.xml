@@ -2,26 +2,30 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.netease.dao.mapper.CommodityMapper">
+<mapper namespace="com.netease.shopping.dao.mapper.CommodityMapper">
     <!-- 根据ID查询-->
-    <select id="findById" parameterType="int" resultType="com.netease.entity.Commodity">
+    <select id="findById" parameterType="int" resultType="com.netease.shopping.entity.Commodity">
         select *
         from commodity where id=#{id};
     </select>
     <!-- 查询所有商品-->
-    <select id="selectAll" resultType="com.netease.entity.Commodity">
+    <select id="selectAll" resultType="com.netease.shopping.entity.Commodity">
         SELECT * FROM commodity
     </select>
 
-    <select id="findNoSellCommodity" resultType="com.netease.entity.Commodity">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM commodity
+    </select>
+    
+    <select id="findNoSellCommodity" resultType="com.netease.shopping.entity.Commodity">
         SELECT * FROM commodity where amount=0
     </select>
 
-    <select id="findLastRecord" resultType="com.netease.entity.Commodity">
+    <select id="findLastRecord" resultType="com.netease.shopping.entity.Commodity">
         select   *   from   commodity   order   by   id   desc   limit   1
     </select>
     <!-- 插入-->
-    <insert id="insertCommodity" parameterType="com.netease.entity.Commodity">
+    <insert id="insertCommodity" parameterType="com.netease.shopping.entity.Commodity">
         insert into commodity
         (title,summary,imgUrl,image_source,text,price,amount,publish_time,userID)values(#{title},#{summary},#{imgUrl},#{image_source},#{text},#{price},#{amount},#{publishTime,jdbcType=TIMESTAMP},#{userID});
 
@@ -32,7 +36,7 @@
         where id=#{id}
     </delete>
     <!-- 更新-->
-    <update id="updateCommodity" parameterType="com.netease.entity.Commodity">
+    <update id="updateCommodity" parameterType="com.netease.shopping.entity.Commodity">
         update  commodity set
         title=#{title},summary=#{summary},imgUrl=#{imgUrl},image_source=#{image_source},text=#{text},price=#{price}where
         id=#{id}

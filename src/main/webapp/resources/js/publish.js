@@ -19,8 +19,6 @@ $(function () {
     });
 
 
-
-
     $("#upload").click(function () {
         var imagePath = $("#imgUrl").val();
         if (imagePath == "") {

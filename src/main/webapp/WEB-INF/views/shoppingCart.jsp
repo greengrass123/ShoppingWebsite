@@ -1,4 +1,4 @@
-<%@ page import="com.netease.entity.ShoppingCart" %>
+<%@ page import="com.netease.shopping.entity.ShoppingCart" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.alibaba.druid.support.json.JSONUtils" %>
 <%@ page import="com.alibaba.druid.support.json.JSONWriter" %>

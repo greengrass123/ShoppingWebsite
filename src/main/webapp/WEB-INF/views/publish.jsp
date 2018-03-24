@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: yuanchuang
@@ -11,6 +12,7 @@
 %>
 <script type="text/javascript">
     ctx ="<%=path%>";//定义图片访问路径前缀
+
 </script>
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
@@ -28,6 +30,7 @@
     <div class="m-tab m-tab-fw m-tab-simple f-cb">
         <h2>内容发布</h2>
     </div>
+
     <div class="n-public">
         <form class="m-form m-form-ht" id="form" method="post"
               action="${pageContext.request.contextPath}/commodity/addCommodity" enctype="multipart/form-data"

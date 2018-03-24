@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.netease.dao.mapper.ShoppingCartMapper">
+<mapper namespace="com.netease.shopping.dao.mapper.ShoppingCartMapper">
     <!-- 根据ID查询-->
-    <select id="findById" parameterType="int" resultType="com.netease.entity.ShoppingCart">
+    <select id="findById" parameterType="int" resultType="com.netease.shopping.entity.ShoppingCart">
         select *
         from shopping_cart where id=#{id};
     </select>
     <!-- 查询所有购物车商品-->
-    <select id="selectAll" resultType="com.netease.entity.ShoppingCart">
+    <select id="selectAll" resultType="com.netease.shopping.entity.ShoppingCart">
         SELECT * FROM shopping_cart
     </select>
     <!-- 插入-->
-    <insert id="insertShoppingCart" parameterType="com.netease.entity.ShoppingCart">
+    <insert id="insertShoppingCart" parameterType="com.netease.shopping.entity.ShoppingCart">
         insert into shopping_cart
         (amount,price,commodityID,buy_time)values(#{amount},#{price},#{commodityID},#{buy_time});
     </insert>
@@ -23,7 +23,7 @@
         where id=#{id}
     </delete>
     <!-- 更新-->
-    <update id="updateCommodity" parameterType="com.netease.entity.ShoppingCart">
+    <update id="updateCommodity" parameterType="com.netease.shopping.entity.ShoppingCart">
         update  shopping_cart set
         amount=#{amount},price=#{price},commodityID=#{commodityID},buy_time=#{buy_time} where
         id=#{id}
