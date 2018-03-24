@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,7 +110,8 @@ public class PurchaseController {
     @RequestMapping("/account")
     public ModelAndView account(){
         List<Purchase> purchaseList=purchaseService.selectAll();
-        int total=0;
+        double total=0;
+        DecimalFormat dFormat=new DecimalFormat("#.00");
         HashMap<Integer,Commodity> commodityHashMap=new HashMap<Integer, Commodity>();
         for(int i=0;i<purchaseList.size();i++){
             int commodityID=purchaseList.get(i).getCommodityID();
@@ -119,6 +121,7 @@ public class PurchaseController {
             }
             total+=purchaseList.get(i).getAmount()*purchaseList.get(i).getPrice();
         }
+        total=Double.valueOf(dFormat.format(total));
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("commodityHashMap",commodityHashMap);
         modelAndView.addObject("purchaseList",purchaseList);

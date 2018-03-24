@@ -60,10 +60,12 @@ public class CommodityController {
 
         ModelAndView modelAndView = new ModelAndView();
         int image_source=0;
-        if(imgPath.startsWith(",images")){
+        //前端使用了两种上传方式，名字设置相同，所以在接受时会放到一个数组中，转化后会有逗号
+        if(imgPath.startsWith(",images")){//本地上传名字在后面，前面是网络图片，为空所以前面有逗号
             imgPath=imgPath.split(",")[1];
             image_source=2;
-        }else if (imgPath.startsWith("http:")){
+        }else if (imgPath.startsWith("http:")){//网络图片名字在前面，后面是本地上传图片，为空所以后面有逗号
+            imgPath=imgPath.split(",")[0];
             image_source=1;
         }else {
             modelAndView.setViewName("publish");
@@ -126,10 +128,12 @@ public class CommodityController {
                                         @RequestParam("text") String text, @RequestParam("price") double price, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         int image_source=0;
-        if(imgPath.startsWith(",image")){//因为前端有两种图片来源，设置的input中name为一样，所以会多一个逗号
+        //前端使用了两种上传方式，名字设置相同，所以在接受时会放到一个数组中，转化后会有逗号
+        if(imgPath.startsWith(",images")){//本地上传名字在后面，前面是网络图片，为空所以前面有逗号
             imgPath=imgPath.split(",")[1];
             image_source=2;
-        }else if (imgPath.startsWith("http:")){
+        }else if (imgPath.startsWith("http:")){//网络图片名字在前面，后面是本地上传图片，为空所以后面有逗号
+            imgPath=imgPath.split(",")[0];
             image_source=1;
         }else {
             modelAndView.setViewName("edit");

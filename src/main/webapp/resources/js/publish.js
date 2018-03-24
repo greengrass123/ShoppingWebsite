@@ -40,7 +40,7 @@ $(function () {
             fileElementId : 'imgUrl',
             dataType: 'json',
             success : function(data) {
-                alert(data);
+
                 if(data=="7001"){
                     alert("上传失败")
                 }else if(data=="7002"){

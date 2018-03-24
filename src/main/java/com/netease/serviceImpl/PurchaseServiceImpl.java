@@ -46,18 +46,17 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 
     public Integer deletePurchaseById(int purchaseID) {
-        purchaseMapper.deletePurchaseById(purchaseID);
-        return null;
+        return  purchaseMapper.deletePurchaseById(purchaseID);
     }
 
     public Purchase findById(int id) {
-        purchaseMapper.findById(id);
-        return null;
+
+        return  purchaseMapper.findById(id);
     }
 
     public Integer updatePurchase(Purchase purchase) {
-        purchaseMapper.updatePurchase(purchase);
-        return null;
+
+        return   purchaseMapper.updatePurchase(purchase);
     }
 
     public List<Purchase> selectAll() {
