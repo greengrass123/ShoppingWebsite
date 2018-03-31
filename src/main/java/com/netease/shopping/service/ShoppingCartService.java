@@ -13,4 +13,6 @@ public interface ShoppingCartService {
     public Integer updateShoppingCart(ShoppingCart shoppingCart);
     public ShoppingCart findById(int id);
     public List<ShoppingCart> selectAll();
+    public List<ShoppingCart> findShoppingCartByCommodityID(int commodityID);
+    public void  deleteShoppingCartByCommodityID(int commodityID);
 }

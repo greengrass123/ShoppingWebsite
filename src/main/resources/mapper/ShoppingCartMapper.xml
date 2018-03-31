@@ -12,6 +12,9 @@
     <select id="selectAll" resultType="com.netease.shopping.entity.ShoppingCart">
         SELECT * FROM shopping_cart
     </select>
+    <select id="findShoppingCartByCommodityID" parameterType="int" resultType="com.netease.shopping.entity.ShoppingCart">
+        SELECT * FROM  shopping_cart WHERE commodityID=#{commodityID}
+    </select>
     <!-- 插入-->
     <insert id="insertShoppingCart" parameterType="com.netease.shopping.entity.ShoppingCart">
         insert into shopping_cart
@@ -22,6 +25,12 @@
         delete from shopping_cart
         where id=#{id}
     </delete>
+
+    <delete id="deleteShoppingCartByCommodityID" parameterType="int">
+        delete from shopping_cart
+        where commodityID=#{commodityID}
+    </delete>
+
     <!-- 更新-->
     <update id="updateCommodity" parameterType="com.netease.shopping.entity.ShoppingCart">
         update  shopping_cart set

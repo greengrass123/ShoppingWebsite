@@ -17,6 +17,7 @@
     <context:component-scan base-package="com.netease.shopping.service"/>
     <context:component-scan base-package="com.netease.shopping.dao"/>
     <context:component-scan base-package="com.netease.shopping.controller"/>
+    <context:component-scan base-package="com.netease.shopping.exception"/>
     <!--<mvc:annotation-driven/>-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
@@ -51,9 +52,15 @@
             <mvc:exclude-mapping path="/images/**"/>
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/css/**"/>
-
             <bean class="com.netease.shopping.interceptor.LoginInterceptor">
             </bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/commodity/addCommodity"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <bean class="com.netease.shopping.interceptor.TokenInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

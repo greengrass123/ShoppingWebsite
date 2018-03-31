@@ -9,6 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
+    response.setHeader("Pragma","No-cache");
+    response.setHeader("Cache-Control","no-cache");
+    response.setDateHeader("Expires", -10);
 %>
 <script type="text/javascript">
     ctx ="<%=path%>";//定义图片访问路径前缀
@@ -78,6 +81,7 @@
                     <input class="u-ipt price" name="price" id="price"/>元
                 </div>
             </div>
+            <input type="hidden" name="token" value="${sessionScope.token}"/>
             <div class="fmitem fmitem-nolab fmitem-btn">
                 <div class="fmipt">
                     <button type="submit" class="u-btn u-btn-primary u-btn-lg">发 布</button>

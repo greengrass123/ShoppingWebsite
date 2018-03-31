@@ -8,11 +8,11 @@ $(function () {
     $(".edit_image_span").show();//控制编辑页面的图片为显示
     $("#fileUpload").hide();
     $(":radio").click(function () {
-        if($(this).val()==1){
+        if ($(this).val() == 1) {
             $("#fileUpload").hide();
             $("#urlImage").show();
         }
-        if($(this).val()==2){
+        if ($(this).val() == 2) {
             $("#fileUpload").show();
             $("#urlImage").hide();
         }
@@ -20,6 +20,7 @@ $(function () {
 
 
     $("#upload").click(function () {
+
         var imagePath = $("#imgUrl").val();
         if (imagePath == "") {
             alert("please upload image file");
@@ -32,22 +33,22 @@ $(function () {
             return false;
         }
         $.ajaxFileUpload({
-            enctype:'multipart/form-data',
-            secureuri : false,
-            url : '/commodity/upload',
-            fileElementId : 'imgUrl',
+            enctype: 'multipart/form-data',
+            secureuri: false,
+            url: '/commodity/upload',
+            fileElementId: 'imgUrl',
             dataType: 'json',
-            success : function(data) {
+            success: function (data) {
 
-                if(data=="7001"){
+                if (data == "7001") {
                     alert("上传失败")
-                }else if(data=="7002"){
+                } else if (data == "7002") {
                     alert("上传失败")
-                }else {
+                } else {
                     alert("上传成功");
                     $("#imgPath").val(data);
 
-                    $("#publishImg").attr("src",ctx+data);
+                    $("#publishImg").attr("src", ctx + data);
                     $(".imgpre").show();
 
                 }
@@ -61,46 +62,53 @@ $(function () {
 
 
         });
+        submitFlag = false;
+
+
         return false;
     })
+
+
 });
 
 function checkdata() {
-    if(!validation()){
+    if (!validation()) {
         return false;
     }
+
     return true;
 }
 
 function validation() {
-    if($("#title").val().length<2||$("#title").val().length>80){
+    if ($("#title").val().length < 2 || $("#title").val().length > 80) {
         alert("标题长度应在2到80之间");
         return false;
     }
-    if($("#summary").val().length<2||$("#summary").val().length>140){
+    if ($("#summary").val().length < 2 || $("#summary").val().length > 140) {
         alert("摘要长度应在2到140之间");
         return false;
     }
-    if($("#text").val().length<2||$("#text").val().length>1000){
+    if ($("#text").val().length < 2 || $("#text").val().length > 1000) {
         alert("正文长度应在2到1000之间");
         return false;
     }
-    if (!(/(^\\d+(\\.\\d+)?$)/.test(num))){
-        alert("输入的不是数字");return false;
+    if (!(/(^\\d+(\\.\\d+)?$)/.test(num))) {
+        alert("输入的不是数字");
+        return false;
     }
-    var imageType=$('input:radio[name="image"]:checked').val();
+    var imageType = $('input:radio[name="image"]:checked').val();
 
-    if(imageType==2){
-        if($("#imgPath").val()==""){
+    if (imageType == 2) {
+        if ($("#imgPath").val() == "") {
             alert("请上传图片");
             return false;
         }
-    }else {//包括为1和空的时候
-        if($("#urlImage").val()==""){
+    } else {//包括为1和空的时候
+        if ($("#urlImage").val() == "") {
             alert("网络图片地址不能为空");
             return false;
-        }else{
-            if(!(/^(http|https):\/\//.test($("#urlImage").val()))){
+        } else {
+            if (!(/^(http|https):\/\//.test($("#urlImage").val()))) {
                 alert("不是正确的网络地址");
                 return false;
             }

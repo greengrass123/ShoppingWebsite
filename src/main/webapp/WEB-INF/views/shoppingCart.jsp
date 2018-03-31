@@ -28,10 +28,11 @@
     <title>购物车</title>
     <jsp:include page="top.jsp" flush="true"></jsp:include>
     <script>
-        ctx="${pageContext.request.contextPath}";
+        ctx = "${pageContext.request.contextPath}";
     </script>
     <script>
         $(function () {
+            var submitFlag=false;//防止重复提交
             $("#shoppingCartButton").click(function () {
 //                var scCheckbox=$(".SCCheckbox");
                 <!--可以选择支付的商品，不用全部支付-->
@@ -40,25 +41,32 @@
 //                    alert(scCheckbox[i].value);
 //                    commodityIds.push($.trim(scCheckbox[i].value));
 //                }
+
                 var shoppingCartList = JSON.stringify(<%=shoppingCarts%>);
-                if(shoppingCartList=="[]"){
+                if (shoppingCartList == "[]") {
                     alert("购物车为空");
                     return;
                 }
-
+                if(submitFlag){
+                    alert("不能重复提交");
+                    return;
+                }
+                submitFlag=true;
                 $.ajax({
                     type: "post",
                     contentType: "application/json",
                     url: "${pageContext.request.contextPath}/purchase/settlement",
                     data: shoppingCartList,
                     success: function (data) {
-                        alert(data);
+                       submitFlag=false;
                     },
                     error: function (data) {
-                        console.log(data);
+                        submitFlag=false;
 
                     }
                 });
+
+
             });
         });
     </script>
@@ -84,14 +92,16 @@
                     <td>${commodityHashMap.get(shoppingCart.commodityID).title}</td>
                     <td>${shoppingCart.price}</td>
                     <td>${shoppingCart.amount}</td>
+
                         <%--<td><input type="hidden" class="SCCheckbox" value="${shoppingCart.commodityID}"> </td>--%>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+
         <div id="act-btn">
             <button class="u-btn u-btn-primary" id="back" onclick="javascript:history.go(-1);">退出</button>
-            <button class="u-btn u-btn-primary" id="shoppingCartButton" value="购买">购买</button>
+            <button class="u-btn u-btn-primary" id="shoppingCartButton" value="付款">付款</button>
         </div>
     </c:if>
 

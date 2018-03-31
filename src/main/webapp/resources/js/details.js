@@ -2,20 +2,23 @@
  * Created by yuanchuang on 2018-3-19.
  */
 $(function () {
+
     $("#detailButton").click(function () {
+
         var price = $("#price").html();
         var id = $("#commodityID").val();
         var amount = $("#amount").html();
-
+        var token=$("#token").val();
         if (amount <= 0) {
             alert("购买数量要大于0");
             return;
         }
+
         $.ajax({
             type: "post",
-            url: ctx+"/purchase/addShoppingCart",
+            url: ctx + "/purchase/addShoppingCart",
             data: {
-                "price": price, "id": id, "amount": amount,
+                "price": price, "id": id, "amount": amount,"token":token,
             },
             success: function (data) {
                 alert(data);
@@ -24,6 +27,8 @@ $(function () {
                 alert("添加失败");
             },
         });
+
+
     });
 
     $("#plusNum").click(function () {

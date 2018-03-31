@@ -9,6 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
+    response.setHeader("Pragma","No-cache");
+    response.setHeader("Cache-Control","no-cache");
+    response.setDateHeader("Expires", -10);
 %>
 <html>
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
@@ -37,6 +40,7 @@
             </div>
             <div class="cnt">
                 <input type="hidden" id="commodityID" value="${commodity.id}"/>
+                <input type="hidden" name="token" id="token" value="${sessionScope.token}"/>
                 <h2>${commodity.title}</h2>
                 <p class="summary">${commodity.summary}</p>
                 <div class="price">

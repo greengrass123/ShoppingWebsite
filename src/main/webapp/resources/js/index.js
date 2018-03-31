@@ -2,13 +2,15 @@
  * Created by yuanchuang on 2018-3-18.
  */
 $(function () {
+
     $(".del").bind("click", function (event) {
+
         var id = $(event.target).attr("data-del");
         event.stopPropagation();//防止冒泡
         event.preventDefault();//阻止a标签跳转
         $.ajax({
             type: "post",
-            url: "${pageContext.request.contextPath}/commodity/deleteNoSellCommodity",
+            url: ctx + "/commodity/deleteNoSellCommodity",
             data: {
                 "id": id
             },
@@ -20,5 +22,7 @@ $(function () {
                 alert(data);
             },
         });
+
+
     });
 });

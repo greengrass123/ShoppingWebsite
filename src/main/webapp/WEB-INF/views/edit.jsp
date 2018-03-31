@@ -13,6 +13,7 @@
 <html>
 <script type="text/javascript">
     ctx ="<%=path%>";//定义图片访问路径前缀
+
 </script>
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
@@ -79,10 +80,11 @@
                     <input class="u-ipt price" name="price" id="price" value="${commodity.price}"/>元
                 </div>
             </div>
+            <input type="hidden" name="token" value="${sessionScope.token}"/>
             <input type="hidden" name="id" value="${commodity.id}">
             <div class="fmitem fmitem-nolab fmitem-btn">
                 <div class="fmipt">
-                    <button type="submit" class="u-btn u-btn-primary u-btn-lg">发 布</button>
+                    <button type="submit" class="u-btn u-btn-primary u-btn-lg">编 辑</button>
                 </div>
             </div>
 

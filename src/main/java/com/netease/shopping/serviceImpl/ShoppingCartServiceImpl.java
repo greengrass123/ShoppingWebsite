@@ -35,4 +35,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartMapper.selectAll();
     }
 
+    public List<ShoppingCart> findShoppingCartByCommodityID(int commodityID) {
+        return shoppingCartMapper.findShoppingCartByCommodityID(commodityID);
+    }
+
+    public void deleteShoppingCartByCommodityID(int commodityID) {
+        shoppingCartMapper.deleteShoppingCartByCommodityID(commodityID);
+    }
+
 }

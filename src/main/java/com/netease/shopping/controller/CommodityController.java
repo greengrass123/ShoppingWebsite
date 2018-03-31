@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +31,7 @@ import static com.netease.shopping.constant.StatusCode.ER7002;
 /**
  * Created by yuanchuang on 2018-3-8.
  */
+
 @Controller
 @RequestMapping("/commodity")
 public class CommodityController {
@@ -108,15 +110,18 @@ public class CommodityController {
             return modelAndView;
         }
         User user=(User)request.getSession().getAttribute("user");
-        if(user.getType()==1){
-            List<Purchase> purchaseList=purchaseService.selectPurchaseByCommodityId(commodity.getId());
-            if(purchaseList.isEmpty()){//说明通过商品ID没有查到购买记录
-                modelAndView.addObject("bought",0);//使用数字0表示没有购买过
-            }else{
-                modelAndView.addObject("bought",1);//使用数字1表示购买过
-                modelAndView.addObject("buyPrice",purchaseList.get(0).getPrice());
+        if(user!=null){
+            if(user.getType()==1){
+                List<Purchase> purchaseList=purchaseService.selectPurchaseByCommodityId(commodity.getId());
+                if(purchaseList.isEmpty()){//说明通过商品ID没有查到购买记录
+                    modelAndView.addObject("bought",0);//使用数字0表示没有购买过
+                }else{
+                    modelAndView.addObject("bought",1);//使用数字1表示购买过
+                    modelAndView.addObject("buyPrice",purchaseList.get(0).getPrice());
+                }
             }
         }
+
         modelAndView.addObject("commodity",commodity);
         return modelAndView;
     }
