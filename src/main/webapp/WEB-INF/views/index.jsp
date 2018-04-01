@@ -57,9 +57,12 @@
                             <div class="price"><span class="v-unit">¥</span><span
                                     class="v-value">${commodity.price}</span>
                             </div>
-                            <c:if test="${commodity.amount>0}">
-                                <span class="had"><b>已售出${commodity.amount}</b></span>
+                            <c:if test="${sessionScope.user!=null}">
+                                <c:if test="${commodity.amount>0}">
+                                    <span class="had"><b>已售出${commodity.amount}</b></span>
+                                </c:if>
                             </c:if>
+
                             <c:if test="${sessionScope.user.type==2}">
                                 <c:if test="${commodity.amount==0}">
                                     <span class="u-btn u-btn-normal u-btn-xs del " data-del="${commodity.id}">删除</span>

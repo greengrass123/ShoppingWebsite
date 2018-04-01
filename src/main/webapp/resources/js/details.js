@@ -13,20 +13,25 @@ $(function () {
             alert("购买数量要大于0");
             return;
         }
+        var msg="确认要购买吗";
+        if(confirm(msg)==true){
+            $.ajax({
+                type: "post",
+                url: ctx + "/purchase/addShoppingCart",
+                data: {
+                    "price": price, "id": id, "amount": amount,"token":token,
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    alert("添加失败");
+                },
+            });
+        }else {
+            return false;
+        }
 
-        $.ajax({
-            type: "post",
-            url: ctx + "/purchase/addShoppingCart",
-            data: {
-                "price": price, "id": id, "amount": amount,"token":token,
-            },
-            success: function (data) {
-                alert(data);
-            },
-            error: function (data) {
-                alert("添加失败");
-            },
-        });
 
 
     });

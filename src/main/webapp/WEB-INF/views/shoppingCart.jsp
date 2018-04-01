@@ -52,19 +52,26 @@
                     return;
                 }
                 submitFlag=true;
-                $.ajax({
-                    type: "post",
-                    contentType: "application/json",
-                    url: "${pageContext.request.contextPath}/purchase/settlement",
-                    data: shoppingCartList,
-                    success: function (data) {
-                       submitFlag=false;
-                    },
-                    error: function (data) {
-                        submitFlag=false;
+                var msg="确认要付款吗";
+                if(confirm(msg)==true){
+                    $.ajax({
+                        type: "post",
+                        contentType: "application/json",
+                        url: "${pageContext.request.contextPath}/purchase/settlement",
+                        data: shoppingCartList,
+                        success: function (data) {
+                            submitFlag=false;
+                            window.location.href="${pageContext.request.contextPath}/purchase/account";
+                        },
+                        error: function (data) {
+                            submitFlag=false;
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    return false;
+                }
+
 
 
             });

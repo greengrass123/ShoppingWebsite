@@ -25,7 +25,7 @@
         <table class="m-table m-table-row n-table g-b3">
             <colgroup><col class="img"/><col/><col class="time"/><col class="price"/></colgroup>
             <thead>
-            <tr><th>内容图片</th><th>内容名称</th><th>购买时间</th><th>购买价格</th></tr>
+            <tr><th>内容图片</th><th>内容名称</th><th>购买时间</th><th>购买价格</th><th>购买数量</th></tr>
             </thead>
             <tbody>
             <c:forEach items="${purchaseList}" var="purchase">
@@ -42,13 +42,14 @@
                     <td><h4><a style="color:black" href="${pageContext.request.contextPath}/commodity/detail?id=${purchase.commodityID}">${commodityHashMap.get(purchase.commodityID).title}</a></h4></td>
                     <td><span class="v-time">${purchase.buy_time}</span></td>
                     <td><span class="v-unit">¥</span><span class="value">${purchase.price}</span></td>
+                    <td><span class="v-num">¥</span><span >${purchase.amount}</span></td>
                 </tr>
             </c:forEach>
 
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3"><div class="total">总计：</div></td>
+                <td colspan="4"><div class="total">总计：</div></td>
                 <td><span class="v-unit">¥</span><span class="value">${total}</span></td>
             </tr>
             </tfoot>
